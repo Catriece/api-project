@@ -5,11 +5,14 @@ const router = express.Router();
 
 // GET ALL REWARD MEMBERS
 
-router.get("/", async (req, res, next) => {
+router.get("/:id?", async (req, res, next) => {
   try {
+    let { id } = req.params;
     let data;
 
-    if (!req.params) {
+    if (id) {
+      data = await members.findOne(id);
+    } else {
       data = await members.findAll();
     }
 
@@ -26,7 +29,7 @@ router.get("/byphone/:id", async (req, res, next) => {
     let data;
 
     if (id) {
-      data = await members.findOnePN();
+      data = await members.findOnePN(id);
     } else {
       data = await members.findAll();
     }
@@ -43,7 +46,7 @@ router.get("/bylastname/:id", async (req, res, next) => {
     let data;
 
     if (id) {
-      data = await members.findOneLN();
+      data = await members.findOneLN(id);
     } else {
       data = await members.findAll();
     }
@@ -60,7 +63,7 @@ router.get("/byemail/:id", async (req, res, next) => {
     let data;
 
     if (id) {
-      data = await members.findOneEA();
+      data = await members.findOneEA(id);
     } else {
       data = await members.findAll();
     }
@@ -72,10 +75,41 @@ router.get("/byemail/:id", async (req, res, next) => {
 });
 
 //ADD NEW REWARDS MEMBER
-// router.post("/", async (req, res, next) => {
-//     try {
+router.post("/", async (req, res, next) => {
+  try {
+    let newMember = req.body;
+    let data = await members.addRewardsMember(newMember);
+    res.json(data);
+  } catch (err) {
+    if (err) {
+      next(err);
+    }
+  }
+});
 
-//     } catch (err) {
-//         if (err)
-//     }
-// })
+//UPDATE EXISTING REWARDS MEMBER
+router.put("/:id", async (req, res, next) => {
+  try {
+    let { id } = req.params;
+    let updateMember = req.body;
+    let data = await members.updateRewardsMember(updateMember, id);
+
+    res.json(data);
+  } catch (err) {
+    next(err);
+  }
+});
+
+//DELETE EXISTING REWARDS MEMBER
+router.delete("/:id", async (req, res, next) => {
+  try {
+    let { id } = req.params;
+    let data = await members.removeMember(id);
+
+    res.json(data);
+  } catch (err) {
+    next(err);
+  }
+});
+
+export default router;

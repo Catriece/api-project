@@ -1,0 +1,11 @@
+{
+    "FirstName": "",
+    "LastName": "",
+    "Gender": "",
+    "Birthdate": "",
+    "SSN": "",
+    "credit_card_number": "",
+    "Address": "",
+    "EmailAddress": "",
+    "PhoneNumber": "",
+}

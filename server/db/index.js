@@ -1,4 +1,4 @@
-import config from "../server/config";
+import config from "../config/config";
 import mysql from "mysql2";
 
 const connection = mysql.createPool(config.mysql);
