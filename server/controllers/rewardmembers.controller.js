@@ -1,5 +1,16 @@
 import query from "../db/utils";
 
+const requestLogById = async (id) => {
+  return await query(
+    "SELECT id, url, method, timestamp FROM requestlogs WHERE id = ?",
+    [id]
+  );
+};
+
+const requestAllLogs = async () => {
+  return await query("SELECT id, url, method, timestamp FROM requestlogs", []);
+};
+
 const findAll = async () => {
   return await query(
     "SELECT id, FirstName, LastName, EmailAddress, PhoneNumber FROM rewardmembers ORDER BY id"
@@ -50,6 +61,8 @@ const removeMember = async (SSN) => {
 };
 
 export default {
+  requestAllLogs,
+  requestLogById,
   findAll,
   findOne,
   findOnePN,

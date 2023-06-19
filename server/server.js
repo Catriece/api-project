@@ -18,7 +18,7 @@ app.use((err, req, res, next) => {
   res.json({ name: err.name, msg: err.message });
 });
 
-console.log("Server configuration:", config);
+// console.log("Server configuration:", config);
 
 app.listen(config.port, () => {
   console.log(`Server listening on port ${config.port}...`);

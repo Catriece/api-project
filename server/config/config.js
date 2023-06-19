@@ -8,7 +8,7 @@ if (!envFound) {
   throw new Error("Couldn't find .env!");
 }
 
-console.log("Loaded env variables:", process.env);
+// console.log("Loaded env variables:", process.env);
 
 // exports env variables for use
 export default {

@@ -7,5 +7,5 @@
     "credit_card_number": "",
     "Address": "",
     "EmailAddress": "",
-    "PhoneNumber": "",
+    "PhoneNumber": ""
 }
